@@ -1,0 +1,13 @@
+# Ignore artifacts:
+static
+www
+public
+
+# Ignore all HTML files:
+**/*.html
+
+# Ignore all Markdown files:
+**/*.md
+
+# Ignore eslintrc file:
+.eslintrc.cjs

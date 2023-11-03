@@ -1,0 +1,86 @@
+body {
+  background-color: #eeeeee;
+  margin: 0;
+}
+#app {
+  display: none;
+}
+#app.is-visible {
+  display: block;
+}
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.container-bt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-rc {
+  background-color: #f9f9f9;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 50px;
+  border: none;
+  border-radius: 28px;
+  outline: none;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.12);
+}
+.icon-previous {
+  background-image: url('./img/previous.svg');
+}
+.icon-next {
+  background-image: url('./img/next.svg');
+}
+.icon-theater {
+  background-image: url('./img/theater.svg');
+}
+.icon-theater.clicked {
+  background-image: url('./img/normal.svg');
+}
+.icon-volumedown {
+  background-image: url('./img/volumedown.svg');
+}
+.icon-volumeup {
+  background-image: url('./img/volumeup.svg');
+}
+.icon-mute {
+  background-image: url('./img/mute.svg');
+}
+.icon-mute.clicked {
+  background-image: url('./img/unmute.svg');
+}
+.icon-subtitles {
+  background-image: url('./img/subtitles.svg');
+}
+.icon-subtitles.clicked {
+  background-image: url('./img/nosubs.svg');
+}
+.icon-play {
+  background-image: url('./img/play.svg');
+}
+.icon-play.clicked {
+  background-image: url('./img/pause.svg');
+}
+.icon-fullscreen {
+  background-image: url('./img/fullscreen.svg');
+}
+.icon-fullscreen.clicked {
+  background-image: url('./img/exitfc.svg');
+}
+.icon-rewind {
+  background-image: url('./img/rewind.svg');
+}
+.icon-forward {
+  background-image: url('./img/forward.svg');
+}
+.icon-miniplayer {
+  background-image: url('./img/miniplayer.svg');
+}
+.icon-miniplayer.clicked {
+  background-image: url('./img/normal.svg');
+}
