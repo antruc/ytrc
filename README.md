@@ -6,6 +6,8 @@
 
 Remote control for Youtube using CircuitPython
 
+![alt text](client.png)
+
 # Getting Started
 
 [Download](https://circuitpython.org/downloads) and [install](https://learn.adafruit.com/welcome-to-circuitpython/installing-circuitpython) CircuitPython on a microcontroller board with WiFi capabilities (like Raspberry Pi Pico W)
