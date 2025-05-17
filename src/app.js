@@ -11,4 +11,11 @@ function app() {
   displayPage()
 }
 
+function uncaught() {
+  window.addEventListener('unhandledrejection', () => {
+    alert('Connection lost')
+  })
+}
+
 onEvent('DOMContentLoaded', app)
+uncaught()
