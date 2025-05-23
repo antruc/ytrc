@@ -10,4 +10,4 @@ public
 **/*.md
 
 # Ignore eslintrc file:
-.eslintrc.cjs
+eslint.config.mjs
