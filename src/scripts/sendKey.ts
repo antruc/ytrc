@@ -1,4 +1,6 @@
-export default async function sendKey(key) {
+import showAlert from './showAlert.ts'
+
+export default async function sendKey(key: string): Promise<void> {
   try {
     await fetch('http://192.168.1.75', {
       method: 'POST',
@@ -7,9 +9,9 @@ export default async function sendKey(key) {
       },
       body: key
     })
-  } catch (error) {
+  } catch (error: any) {
     if (error) {
-      alert('Connection lost')
+      showAlert('Connection lost')
     }
   }
 }

@@ -10,7 +10,7 @@ public
 **/*.md
 
 # Ignore eslintrc file:
-eslint.config.mjs
+eslint.config.mts
 
 # Ignore esbuild.js file:
-esbuild.js
+esbuild.ts

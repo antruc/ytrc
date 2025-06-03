@@ -5,62 +5,71 @@ import open from 'open'
 
 process.env.NODE_ENV = process.argv[2] // eslint-disable-line
 
-async function copyAndWrite(outdir, outfile) {
+function consoleLog(message: string): void {
+  console.log(message)
+}
+
+async function copyAndWrite(outdir: string, outfile: string): Promise<void> {
   await fs.copy('public', outdir)
 
-  const html = await fs.readFile(`${outdir}/index.html`, 'utf8')
-  const root = parse(html)
+  const html: string = await fs.readFile(`${outdir}/index.html`, 'utf8')
+  const root: any = parse(html)
 
-  const head = root.querySelector('head')
-  head.insertAdjacentHTML(
+
+  const head: HTMLElement | null = root.querySelector('head') as HTMLElement | null
+  if (head) {
+    head.insertAdjacentHTML(
     'beforeend',
     `  <link rel="stylesheet" href="app${outfile}.css" //>
 `
   )
+  }
 
-  const body = root.querySelector('body')
-  body.insertAdjacentHTML(
+  const body: HTMLElement | null = root.querySelector('body') as HTMLElement | null
+  if (body) {
+    body.insertAdjacentHTML(
     'beforeend',
     `  <script src="app${outfile}.js"></script>
 `
   )
+  }
 
-  const index = root.toString()
+  const index: string = root.toString()
   await fs.writeFile(`${outdir}/index.html`, index)
 }
 
 if (process.env.NODE_ENV === 'development') { // eslint-disable-line
   copyAndWrite('www', '')
 
-  let ctx = await esbuild.context({
-    entryPoints: ['src/app.js'],
+  const ctx = await esbuild.context({
+    entryPoints: ['./src/app.ts'],
     bundle: true,
-    target: ['es2021'],
+    target: ['esnext'],
     external: ['*.svg'],
     define: { 'window.IS_DEVELOPMENT': 'true' },
     outdir: 'www'
   })
 
   await ctx.watch()
-  console.log('Build finished, watching for changes...')
+  consoleLog('Build finished, watching for changes...')
 
   await ctx.serve({
     servedir: 'www'
   })
-  console.log('Local: http://localhost:8000')
+  consoleLog('Local: http://localhost:8000')
 
   await open('http://localhost:8000')
 } else {
   copyAndWrite('static', '.min')
 
   await esbuild.build({
-    entryPoints: ['src/app.js'],
+    entryPoints: ['./src/app.ts'],
     bundle: true,
     minify: true,
-    target: ['es2021'],
+    target: ['esnext'],
     external: ['*.svg'],
     define: { 'window.IS_DEVELOPMENT': 'false' },
     outfile: 'static/app.min.js'
   })
-  console.log('Build finished')
+  consoleLog('Build finished')
 }
