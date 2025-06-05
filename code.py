@@ -22,7 +22,10 @@ pool = socketpool.SocketPool(wifi.radio)
 
 server = Server(pool, "/static", debug=False)
 # Allow cross-origin requests.
-server.headers = {"Access-Control-Allow-Origin": "*"}
+server.headers = {
+    "X-Server": "Adafruit CircuitPython HTTP Server",
+    "Access-Control-Allow-Origin": "*",
+}
 
 # Set up a keyboard device
 kbd = Keyboard(usb_hid.devices)
