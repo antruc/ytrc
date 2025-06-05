@@ -2,7 +2,7 @@ import showAlert from './showAlert.ts'
 
 export default async function sendKey(key: string): Promise<void> {
   try {
-    await fetch('http://192.168.1.75', {
+    await fetch('http://192.168.1.75:5000', {
       method: 'POST',
       headers: {
         'Content-Type': 'text/plain;charset=utf-8'
