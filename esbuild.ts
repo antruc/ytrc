@@ -10,6 +10,7 @@ function consoleLog(message: string): void {
 }
 
 async function copyAndWrite(outdir: string, outfile: string): Promise<void> {
+  await fs.emptyDir(outdir)
   await fs.copy('public', outdir)
 
   const html: string = await fs.readFile(`${outdir}/index.html`, 'utf8')
