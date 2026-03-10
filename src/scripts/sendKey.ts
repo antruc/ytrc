@@ -9,9 +9,7 @@ export default async function sendKey(key: string): Promise<void> {
       },
       body: key
     })
-  } catch (error: any) {
-    if (error) {
-      showAlert('Connection lost')
-    }
+  } catch {
+    showAlert('Connection lost')
   }
 }
