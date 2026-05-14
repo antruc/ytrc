@@ -5,12 +5,3 @@ public
 
 # Ignore all HTML files:
 **/*.html
-
-# Ignore all Markdown files:
-**/*.md
-
-# Ignore eslintrc file:
-eslint.config.mts
-
-# Ignore esbuild.js file:
-esbuild.ts
