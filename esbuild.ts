@@ -1,9 +1,9 @@
 import fs from 'fs-extra'
-import { parse } from 'node-html-parser'
+import { parse, HTMLElement as ParserElement } from 'node-html-parser'
 import * as esbuild from 'esbuild'
 import open from 'open'
 
-process.env.NODE_ENV = process.argv[2] // eslint-disable-line
+process.env.NODE_ENV = process.argv[2]
 
 function consoleLog(message: string): void {
   console.log(message)
@@ -14,32 +14,35 @@ async function copyAndWrite(outdir: string, outfile: string): Promise<void> {
   await fs.copy('public', outdir)
 
   const html: string = await fs.readFile(`${outdir}/index.html`, 'utf8')
-  const root: any = parse(html)
+  const root: ParserElement = parse(html)
 
-
-  const head: HTMLElement | null = root.querySelector('head') as HTMLElement | null
+  const head: HTMLElement | null = root.querySelector(
+    'head'
+  ) as HTMLElement | null
   if (head) {
     head.insertAdjacentHTML(
-    'beforeend',
-    `  <link rel="stylesheet" href="app${outfile}.css" //>
+      'beforeend',
+      `  <link rel="stylesheet" href="app${outfile}.css" //>
 `
-  )
+    )
   }
 
-  const body: HTMLElement | null = root.querySelector('body') as HTMLElement | null
+  const body: HTMLElement | null = root.querySelector(
+    'body'
+  ) as HTMLElement | null
   if (body) {
     body.insertAdjacentHTML(
-    'beforeend',
-    `  <script src="app${outfile}.js"></script>
+      'beforeend',
+      `  <script src="app${outfile}.js"></script>
 `
-  )
+    )
   }
 
   const index: string = root.toString()
   await fs.writeFile(`${outdir}/index.html`, index)
 }
 
-if (process.env.NODE_ENV === 'development') { // eslint-disable-line
+if (process.env.NODE_ENV === 'development') {
   copyAndWrite('www', '')
 
   const ctx = await esbuild.context({
