@@ -1,11 +1,12 @@
-import os
 import ipaddress
-import wifi
+import os
 import socketpool
 import usb_hid
-from adafruit_httpserver import Server, Request, Response, FileResponse, POST
+import wifi
+
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keycode import Keycode
+from adafruit_httpserver import Server, Request, Response, FileResponse, POST
 
 #  Set static IP address
 ipv4 = ipaddress.IPv4Address("192.168.1.75")
